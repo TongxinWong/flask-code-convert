@@ -1,8 +1,9 @@
+import os
 import openai
 from flask import Flask, request
 app = Flask(__name__)
 
-openai.api_key = "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" # os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 openai.model = "gpt-3.5-turbo"
 history = [{"role": "system", "content": "You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible. Knowledge cutoff: {knowledge_cutoff} Current date: {current_date}"}]
 
