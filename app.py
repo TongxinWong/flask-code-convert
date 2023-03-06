@@ -1,6 +1,7 @@
 import os
 import openai
 from flask import Flask, request
+from flask_cors import cross_origin
 app = Flask(__name__)
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -12,6 +13,7 @@ def monitor_trigger():
     return 'It works!'
 
 @app.route('/api/code_convert', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def code_convert():
     received_data = request.get_json()
     input_lang = received_data['input_lang']
